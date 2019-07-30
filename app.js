@@ -13,16 +13,16 @@ app.use(express.urlencoded({ extended: false }));
 
 let news = [];
 
-app.use('/news',(req, res)=>{
+app.use('/news',async (req, res)=>{
   if(news.length !== 0) return res.send(news);
   
-  newsapi.v2.topHeadlines({
+  const response = await newsapi.v2.topHeadlines({
     country: 'ca',
     category: 'technology'
-  }).then(response => {
-    news = response;
-    return res.send(news);
   });
+  
+  return res.send(response);
+  
 })
 
 
