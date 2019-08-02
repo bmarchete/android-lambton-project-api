@@ -20,8 +20,8 @@ app.use('/news',async (req, res)=>{
     country: 'ca',
     category: 'technology'
   });
-  
-  return res.send(response);
+  news = response;
+  return res.send(news);
   
 })
 
